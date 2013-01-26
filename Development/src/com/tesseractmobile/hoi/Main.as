@@ -3,6 +3,8 @@ package com.tesseractmobile.hoi
 	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
 	
 	/**
 	 * ...
@@ -10,19 +12,29 @@ package com.tesseractmobile.hoi
 	 */
 	public class Main extends Sprite 
 	{
+		private var maze : Maze;
+		private var player : Player;
+		static public const SIZE : int = 64;
 		
 		public function Main():void 
 		{
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 			
-			var rect : Sprite = new Sprite();
-			var g : Graphics = rect.graphics;
-			g.beginFill(0x550055, 1.0);
-			g.drawRect(100, 100, 100, 100);
-			g.endFill();
 			
-			addChild(rect);
+			var size : int = SIZE;
+			maze = new Maze(16, 12, size);
+			
+			for each (var row : Vector.<Tile> in maze.getGrid()) {
+				for each (var tile : Tile in row) {
+					addChild(tile.getSprite());
+				}
+			}
+			player = new Player(size / 4, size / 4, size / 2);
+			addChild(player.getSprite());
+			
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
+			stage.addEventListener(Event.ENTER_FRAME, handleEnterFrame);
 		}
 		
 		private function init(e:Event = null):void 
@@ -31,6 +43,38 @@ package com.tesseractmobile.hoi
 			// entry point
 		}
 		
+		private function handleKeyDown(e:KeyboardEvent) : void {
+			switch(e.keyCode) {
+				case Keyboard.UP:
+					player.up();
+					break;
+				case Keyboard.DOWN:
+					player.down();
+					break;
+				case Keyboard.LEFT:
+					player.left();
+					break;
+				case Keyboard.RIGHT:
+					player.right();
+					break;
+					
+			}
+		}
+		
+		private function handleEnterFrame(e:Event) : void {
+			update(33);
+		}
+		
+		private function update(elapsedTime : int) : void {
+			for each (var row : Vector.<Tile> in maze.getGrid()) {
+				for each (var tile : Tile in row) {
+					if (tile.contains(player)) {
+						player.setTile(tile);
+					}
+				}
+			}
+			player.update(elapsedTime);
+		}
 	}
 	
 }
