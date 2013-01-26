@@ -16,7 +16,7 @@ package com.tesseractmobile.hoi
 				var row : Vector.<Tile> = new Vector.<Tile>;
 				for (var r : int = 0; r < rows; r++) {
 					var borders : Borders = new Borders(r == 0, c == 0, r == rows - 1, c == col - 1);
-					row.push(new TileStandard(c * r, r * tileSize, c * tileSize, tileSize, borders));
+					row.push(null);
 				}
 				grid.push(row);
 			}
