@@ -4,6 +4,7 @@ package com.tesseractmobile.hoi
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import flash.geom.Rectangle;
 	import flash.ui.Keyboard;
 	
 	/**
@@ -16,6 +17,7 @@ package com.tesseractmobile.hoi
 		private var player : Player;
 		static public const SIZE : int = 32;
 		private var _keyEvent : KeyboardEvent;
+		private var _scratchRect : Rectangle = new Rectangle(0,0,0,0);
 		public function Main():void 
 		{
 			if (stage) init();
@@ -30,7 +32,7 @@ package com.tesseractmobile.hoi
 					addChild(tile.getSprite());
 				}
 			}
-			player = new Player(size / 4, size / 4, size / 2);
+			player = new Player(new Rectangle(0,0,SIZE,SIZE));
 			addChild(player.getSprite());
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
@@ -54,31 +56,48 @@ package com.tesseractmobile.hoi
 		private function update(elapsedTime : int) : void {
 			if (_keyEvent != null) 
 			{
+				//Easier if maze checks for available moves
+				//Copy Player location to _scratchRect
+				_scratchRect.left = player.getRect().left;
+				_scratchRect.right = player.getRect().right;
+				_scratchRect.top = player.getRect().top;
+				_scratchRect.bottom = player.getRect().bottom;
+				//Move scratch rect to where player will be
 				switch(_keyEvent.keyCode) {
 					case Keyboard.UP:
-						player.up();
+						_scratchRect.offset(0, -SIZE);
 						break;
 					case Keyboard.DOWN:
-						player.down();
+						_scratchRect.offset(0, SIZE);
 						break;
 					case Keyboard.LEFT:
-						player.left();
+						_scratchRect.offset(-SIZE, 0);
 						break;
 					case Keyboard.RIGHT:
-						player.right();
+						_scratchRect.offset(SIZE, 0);
 						break;	
 				}
+				
 				_keyEvent = null;
-			}
-			for each (var row : Vector.<Tile> in maze.getGrid()) {
+				//Look for tile that the player would end up int
+				for each (var row : Vector.<Tile> in maze.getGrid()) {
 				for each (var tile : Tile in row) {
-					if (tile.contains(player)) {
+					if (tile.contains(_scratchRect)) {
+						//Add entity to tile to trigger events
+						//tile.addEntity(player);
+						//Add tile to player to track location
 						player.setTile(tile);
 					}
 				}
 			}
+			}
+
+			
 			player.update(elapsedTime);
 		}
+		
+
 	}
+	
 	
 }

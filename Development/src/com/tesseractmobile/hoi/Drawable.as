@@ -1,6 +1,7 @@
 package com.tesseractmobile.hoi 
 {
 	import flash.display.Sprite;
+	import flash.geom.Rectangle;
 	
 	/**
 	 * ...
@@ -8,16 +9,22 @@ package com.tesseractmobile.hoi
 	 */
 	public interface Drawable 
 	{
+		/**
+		 * @return a drawable sprite
+		 */
 		function getSprite() : Sprite;
 		/**
-		 * 
+		 * Move object based on elapsed time
 		 * @param	elapsedTime
 		 */
 		function update(elapsedTime : int) : void;
-		function contains(drawable : Drawable) : Boolean;
-		function getX() : int;
-		function getY() : int;
-		function getSize() : int;
+		/**
+		 * Check if center of rect is contained in Drawble object
+		 * @param	rect
+		 * @return
+		 */
+		function contains(rect : Rectangle) : Boolean;
+		function getRect() : Rectangle;
 	}
 	
 }
