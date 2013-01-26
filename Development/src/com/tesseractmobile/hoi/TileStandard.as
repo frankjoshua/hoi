@@ -15,7 +15,7 @@ package com.tesseractmobile.hoi
 		private var _xPos : int;
 		private var _yPos : int;
 		private var _size : int;
-		public function TileStandard(color : int, xPos : int, yPos : int, size : int, borders : Borders) 
+		public function TileStandard(color : int, xPos : int, yPos : int, size : int, borders : Borders)
 		{
 			_xPos = xPos;
 			_yPos = yPos;
