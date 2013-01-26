@@ -81,21 +81,27 @@ package com.tesseractmobile.hoi
 				_keyEvent = null;
 				//Look for tile that the player would end up int
 				for each (var row : Vector.<Tile> in maze.getGrid()) {
-				for each (var tile : Tile in row) {
-					if (tile.contains(_scratchRect)) {
-						//Add entity to tile to trigger events
-						//tile.addEntity(player);
-						//Add tile to player to track location
-						player.setTile(tile);
+					for each (var tile : Tile in row) {
+						if (tile.contains(_scratchRect)) {
+							//Add entity to tile to trigger events
+							tile.addEntity(player);
+							//Add tile to player to track location
+							player.setTile(tile);
+							//Set up test trigger
+							tile.addEventListener(shrinkPlayer);
+						}
 					}
 				}
-			}
 			}
 
 			
 			player.update(elapsedTime);
 		}
 		
+		public function shrinkPlayer(event : EventType) : void {
+			player.getSprite().width = 4;
+			player.getSprite().height = 4;
+		}
 
 	}
 	

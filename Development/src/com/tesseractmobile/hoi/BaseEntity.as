@@ -2,6 +2,7 @@ package com.tesseractmobile.hoi
 {
 	import flash.display.Sprite;
 	import flash.display.Graphics;
+	import flash.errors.IllegalOperationError;
 	import flash.geom.Rectangle;
 	/**
 	 * ...
@@ -9,6 +10,10 @@ package com.tesseractmobile.hoi
 	 */
 	public class BaseEntity implements Entity
 	{
+		//Entity Types
+		public static const PLAYER_TYPE = 1;
+		public static const ENEMY_TYPE = 2;
+		//Member vars
 		private var _sprite : Sprite;
 		private var _xDest : int;
 		private var _yDest : int;
@@ -55,8 +60,8 @@ package com.tesseractmobile.hoi
 			//Update Sprite
 			_sprite.y = _rect.top;
 			_sprite.x = _rect.left;
-			_sprite.width = _rect.width;
-			_sprite.height = _rect.height;
+			//_sprite.width = _rect.width;
+			//_sprite.height = _rect.height;
 		}
 		
 		
@@ -99,6 +104,11 @@ package com.tesseractmobile.hoi
 		public function contains(rect : Rectangle) : Boolean {
 			return _rect.contains(rect.left + rect.width / 2, rect.top + rect.height / 2);
 		}
+		
+		//This should be abstract
+		public function getType() : int {
+			throw new IllegalOperationError();
+		};
 	}
 
 }

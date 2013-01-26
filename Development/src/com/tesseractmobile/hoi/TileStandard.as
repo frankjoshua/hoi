@@ -15,6 +15,7 @@ package com.tesseractmobile.hoi
 		private var _borders : Borders;
 		private var _rect : Rectangle;
 		private var _id : int;
+		private var _eventListeners : Vector.<Function> = new Vector.<Function>();
 		
 		public function TileStandard(id : int, rect : Rectangle, borders : Borders)
 		{
@@ -73,6 +74,34 @@ package com.tesseractmobile.hoi
 		
 		public function getRect() : Rectangle {
 			return _rect;
+		}
+		
+		public function addEventListener(listener : Function) : void {
+			_eventListeners.push(listener);
+		}
+		
+		/**
+		 * Currently only removes one listener
+		 * Not the one you want!
+		 * FIX THIS
+		 * @param	listener
+		 */
+		public function removeEventListener(listener : Function) : void {
+			_eventListeners.pop();
+		}
+		
+		/**
+		 * Sends event to Event Listeners based on Entity type
+		 * @param	entity
+		 */
+		public function addEntity(entity : Entity) : void {
+			//Create an event
+			var event : EventType =  new EventType(entity.getType());
+			//Send to all event listeners
+			for each (var listener : Function in _eventListeners) {
+				//Could check for return Boolean to see if event was handled
+				listener(event);
+			}
 		}
 	}
 

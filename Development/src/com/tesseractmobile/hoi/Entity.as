@@ -7,7 +7,7 @@ package com.tesseractmobile.hoi
 	 */
 	public interface Entity extends Drawable
 	{
-		
+		function getType() : int;
 	}
 	
 }

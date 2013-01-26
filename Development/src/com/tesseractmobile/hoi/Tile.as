@@ -9,6 +9,9 @@ package com.tesseractmobile.hoi
 	public interface Tile extends Drawable
 	{
 		function getEdge(edge : int) : Boolean;
+		function addEntity(entity : Entity) : void;
+		function addEventListener(listener : Function) : void;
+		function removeEventListener(listener : Function) : void;
 	}
 	
 }

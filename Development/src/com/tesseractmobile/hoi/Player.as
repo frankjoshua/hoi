@@ -14,6 +14,9 @@ package com.tesseractmobile.hoi
 			super(rect);
 		}
 				
+		override public function getType() : int {
+			return BaseEntity.PLAYER_TYPE;
+		}
 	}
 
 }
