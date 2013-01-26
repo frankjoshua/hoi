@@ -24,6 +24,8 @@ package com.tesseractmobile.hoi
 			_yPos = yPos;
 			_xPos = xPos;
 			_size = size;
+			_yVel = 0;
+			_xVel = 0;
 			var g : Graphics = _sprite.graphics;
 			g.beginFill(0xFF0000, 1.0);
 			g.drawRect(xPos, yPos, size, size);
@@ -39,11 +41,11 @@ package com.tesseractmobile.hoi
 			var yDelta : int = _yVel * elapsedTime;
 			_yPos += yDelta;
 			_xPos += xDelta;
-			if (Math.abs(_yPos - _yDest) < yDelta) {
+			if (Math.abs(_yPos - _yDest) < Math.abs(yDelta)) {
 				_yPos = _yDest;
 				_yVel = 0;
 			}
-			if (Math.abs(_xPos - _xDest) < xDelta) {
+			if (Math.abs(_xPos - _xDest) < Math.abs(xDelta)) {
 				_xPos = _xDest;
 				_xVel = 0;
 			}
@@ -53,8 +55,8 @@ package com.tesseractmobile.hoi
 		}
 		
 		public function down() : Boolean {
-			if (_tile.getEdge(Borders.BOTTOM) == false) {
-				_yDest = _yPos + _size;
+			if (isSopped() && _tile.getEdge(Borders.BOTTOM) == false) {
+				_yDest = _yPos + _size * 2;
 				_yVel = getSpeed();
 				return true;
 			}
@@ -63,8 +65,8 @@ package com.tesseractmobile.hoi
 		}
 		
 		public function up() : Boolean {
-			if (_tile.getEdge(Borders.TOP) == false) {
-				_yDest = _yPos - _size;
+			if (isSopped() && _tile.getEdge(Borders.TOP) == false) {
+				_yDest = _yPos - _size * 2;
 				_yVel = - getSpeed();
 				return true;
 			}
@@ -72,8 +74,8 @@ package com.tesseractmobile.hoi
 		}
 		
 		public function left() : Boolean {
-			if(_tile.getEdge(Borders.LEFT) == false){
-				_xDest = _xPos - _size;
+			if(isSopped() && _tile.getEdge(Borders.LEFT) == false){
+				_xDest = _xPos - _size * 2;
 				_xVel = - getSpeed();
 				return true;
 			}
@@ -81,8 +83,8 @@ package com.tesseractmobile.hoi
 		}
 		
 		public function right() : Boolean {
-			if (_tile.getEdge(Borders.RIGHT) == false) {
-				_xDest = _xPos + _size;
+			if (isSopped() && _tile.getEdge(Borders.RIGHT) == false) {
+				_xDest = _xPos + _size * 2;
 				_xVel = getSpeed();
 				return true;
 			}
@@ -113,6 +115,11 @@ package com.tesseractmobile.hoi
 		private function getSpeed():Number 
 		{
 			return 0.2;
+		}
+		
+		private function isSopped() : Boolean 
+		{
+			return _yVel == 0 && _xVel == 0;
 		}
 	}
 

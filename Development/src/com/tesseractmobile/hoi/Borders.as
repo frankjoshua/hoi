@@ -16,6 +16,13 @@ package com.tesseractmobile.hoi
 		private var _right : Boolean;
 		private var _bottom : Boolean;
 		
+		/**
+		 * 
+		 * @param	left
+		 * @param	top
+		 * @param	right
+		 * @param	bottom
+		 */
 		public function Borders(left : Boolean, top : Boolean, right : Boolean, bottom : Boolean) 
 		{
 			_top = top;
@@ -31,7 +38,7 @@ package com.tesseractmobile.hoi
 				case RIGHT:
 					return _right;
 				case TOP:
-					return _left;
+					return _top;
 				case BOTTOM:
 					return _bottom;
 			}

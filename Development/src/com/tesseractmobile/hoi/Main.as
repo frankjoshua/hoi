@@ -14,8 +14,8 @@ package com.tesseractmobile.hoi
 	{
 		private var maze : Maze;
 		private var player : Player;
-		static public const SIZE : int = 64;
-		
+		static public const SIZE : int = 32;
+		private var _keyEvent : KeyboardEvent;
 		public function Main():void 
 		{
 			if (stage) init();
@@ -44,21 +44,7 @@ package com.tesseractmobile.hoi
 		}
 		
 		private function handleKeyDown(e:KeyboardEvent) : void {
-			switch(e.keyCode) {
-				case Keyboard.UP:
-					player.up();
-					break;
-				case Keyboard.DOWN:
-					player.down();
-					break;
-				case Keyboard.LEFT:
-					player.left();
-					break;
-				case Keyboard.RIGHT:
-					player.right();
-					break;
-					
-			}
+			_keyEvent = e;
 		}
 		
 		private function handleEnterFrame(e:Event) : void {
@@ -66,6 +52,24 @@ package com.tesseractmobile.hoi
 		}
 		
 		private function update(elapsedTime : int) : void {
+			if (_keyEvent != null) 
+			{
+				switch(_keyEvent.keyCode) {
+					case Keyboard.UP:
+						player.up();
+						break;
+					case Keyboard.DOWN:
+						player.down();
+						break;
+					case Keyboard.LEFT:
+						player.left();
+						break;
+					case Keyboard.RIGHT:
+						player.right();
+						break;	
+				}
+				_keyEvent = null;
+			}
 			for each (var row : Vector.<Tile> in maze.getGrid()) {
 				for each (var tile : Tile in row) {
 					if (tile.contains(player)) {

@@ -2,6 +2,7 @@ package com.tesseractmobile.hoi
 {
 	import flash.display.Sprite;
 	import flash.display.Graphics;
+	import flash.text.TextField;
 	/**
 	 * ...
 	 * @author Joshua Frank
@@ -22,10 +23,33 @@ package com.tesseractmobile.hoi
 			this._color = color;
 			this._borders = borders;
 			_sprite = new Sprite();
+			_sprite.x = xPos;
+			_sprite.y = yPos;
 			var g : Graphics = _sprite.graphics;
-			g.beginFill(_color, 1.0);
-			g.drawRect(xPos, yPos, size, size);
+			g.beginFill(0xFFFFFF, 1.0);
+			g.drawRect(0, 0, size, size);
 			g.endFill();
+			var text : TextField = new TextField();
+			//text.text = String(xPos / size) + "," + String(yPos / size);
+			text.text = getBorderText(borders);
+			_sprite.addChild(text);
+		}
+		
+		private function getBorderText(borders : Borders) : String {
+			var text : String = new String();
+			if (borders.getEdge(Borders.TOP)) {
+				text = text + " TOP ";
+			}
+			if (borders.getEdge(Borders.BOTTOM)) {
+				text = text + " BOTTOM ";
+			}
+			if (borders.getEdge(Borders.LEFT)) {
+				text = text + " LEFT ";
+			}
+			if (borders.getEdge(Borders.RIGHT)) {
+				text = text + " RIGHT ";
+			}
+			return text;
 		}
 		
 		public function getColor() : int {
