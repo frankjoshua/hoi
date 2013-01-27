@@ -23,6 +23,13 @@ package com.tesseractmobile.hoi
 		public static const ROBOT_ROCK_1 : int = 1;
 		public static const ROBOT_ROCK_2 : int = 2;
 		public static const ROBOT_ROCK_3 : int = 3;
+		//Enemy images
+		public static const FIRE_1 : int = 36;
+		public static const FIRE_2 : int = 36;
+		public static const FIRE_3 : int = 35;
+		public static const FIRE_4 : int = 24;
+		public static const SENTRY_1 : int = 7;
+		public static const PATROL_1 : int = 3;
 		
 		public function BitmapManager() 
 		{

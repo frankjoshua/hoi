@@ -16,7 +16,7 @@ package com.tesseractmobile.hoi
 	{
 		//Default grid size
 		static public const TILE_SIZE : int = 64;
-		static public const SIZE : int = 32;
+		static public const SIZE : int = 64;
 		static public const HEIGHT : int = 9;
 		static public const WIDTH : int = 16;
 		//Directional Contant
@@ -248,19 +248,22 @@ package com.tesseractmobile.hoi
 		public function blastTiles(tiles : Vector.<Tile>) : void {
 			for each (var tile : Tile in tiles) {
 				tile.addEventListener(killPlayer);
-				var g : Graphics = tile.getSprite().graphics;
-				g.clear();
-				g.beginFill(0xFF1111, 0.9);
-				g.drawRect(0, 0, tile.getRect().width, tile.getRect().height);
-				g.endFill();
+				tile.setBitmap(BitmapManager.getInstance().getBadGuyImages(BitmapManager.FIRE_1));
+				//var g : Graphics = tile.getSprite().graphics;
+				//g.clear();
+				//g.beginFill(0xFF1111, 0.9);
+				//g.drawRect(0, 0, tile.getRect().width, tile.getRect().height);
+				//g.endFill();
 			}
 		}
 		
 		public function unBlastTiles(tiles : Vector.<Tile>) : void {
 			for each (var tile : Tile in tiles) {
 				tile.removeEventListener(killPlayer);
-				var g : Graphics = tile.getSprite().graphics;
-				g.clear();
+				tile.setBitmap(BitmapManager.getInstance().getTileImage(0));
+				//tile.clear();
+				//var g : Graphics = tile.getSprite().graphics;
+				//g.clear();
 			}
 		}
 		

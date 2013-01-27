@@ -24,6 +24,7 @@ package com.tesseractmobile.hoi
 		private var _eventListeners : Vector.<Function> = new Vector.<Function>();
 		private var _entity : Entity;
 		private var _bitmap : Bitmap;
+		private var _lastBitmap : Bitmap;
 		
 		public function TileStandard(id : int, rect : Rectangle, tmxTile : TMXTile)
 		{
@@ -35,14 +36,14 @@ package com.tesseractmobile.hoi
 			//Create bitmap
 			//_bitmap = new Bitmap(BitmapManager.getInstance().getTileImage(3).bitmapData);
 			if(tmxTile != null){
-				_bitmap = new Bitmap(tmxTile.bitmapData);
+				setBitmap(new Bitmap(tmxTile.bitmapData));
 				if (tmxTile.properties.hasOwnProperty('borders')) {
 					var borderStr : String = (tmxTile.properties.borders as String).toLowerCase();
 					_borders = new Borders(borderStr.indexOf('left') > 0, borderStr.indexOf('top') > 0, borderStr.indexOf('right') > 0, borderStr.indexOf('bottom') > 0);
 				}
 			} else {
 				//_bitmap = new Bitmap(BitmapManager.getInstance().getTileImage(3).bitmapData);
-				_bitmap = new Bitmap(BitmapManager.getInstance().getTileImage(2).bitmapData);
+				setBitmap(new Bitmap(BitmapManager.getInstance().getTileImage(2).bitmapData));
 				_borders = new Borders(false, false, false, false);
 			}
 			//_bitmap.bitmapData.copyPixels(tmxTile.bitmapData, tmxTile.bitmapData.rect, new Point(0, 0));
@@ -157,6 +158,26 @@ package com.tesseractmobile.hoi
 		
 		public function getBitmap() : Bitmap {
 			return _bitmap;
+		}
+		
+		public function setBitmap(bitmap : Bitmap) : void {
+			if (_bitmap == null) {
+				_bitmap = new Bitmap();
+				_bitmap.bitmapData = new BitmapData(Main.SIZE, Main.SIZE);
+			}
+			_bitmap.bitmapData.copyPixels(bitmap.bitmapData, bitmap.bitmapData.rect, new Point(0, 0));
+				
+			
+			_bitmap.x = _rect.left;
+			_bitmap.y = _rect.top;
+			_lastBitmap = _bitmap;
+		}
+		
+		public function clear() : void {
+			//if (_lastBitmap != null) {
+			//	setBitmap(_lastBitmap);
+			//}
+			//setBitmap(null);
 		}
 	}
 
