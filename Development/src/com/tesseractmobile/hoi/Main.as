@@ -51,6 +51,7 @@ package com.tesseractmobile.hoi
 			//Add sprites from tiles
 			for each (var row : Vector.<Tile> in maze.getGrid()) {
 				for each (var tile : Tile in row) {
+					addChild(tile.getBitmap());
 					addChild(tile.getSprite());
 				}
 			}
@@ -132,8 +133,8 @@ package com.tesseractmobile.hoi
 					_showPulse = false;
 				} else {
 					//Draw pulse
-					graphics.beginFill(0xFFFFFF, 0.0);
-					graphics.lineStyle(5, 0xFFFFFF, 0.2);
+					graphics.beginFill(0xFFFFFF, 0.2);
+					graphics.lineStyle(5, 0xFFFFFF, 0.8);
 					graphics.drawCircle(0, 0, _pulseRadius);
 					graphics.endFill();
 					//Check if player is touched by pulse
@@ -207,6 +208,9 @@ package com.tesseractmobile.hoi
 				tile.addEventListener(killPlayer);
 				var g : Graphics = tile.getSprite().graphics;
 				g.clear();
+				g.beginFill(0xFF1111, 0.9);
+				g.drawRect(0, 0, tile.getRect().width, tile.getRect().height);
+				g.endFill();
 			}
 		}
 		
@@ -215,9 +219,6 @@ package com.tesseractmobile.hoi
 				tile.removeEventListener(killPlayer);
 				var g : Graphics = tile.getSprite().graphics;
 				g.clear();
-				g.beginFill(0x222222, 1.0);
-				g.drawRect(0, 0, tile.getRect().width, tile.getRect().height);
-				g.endFill();
 			}
 		}
 		

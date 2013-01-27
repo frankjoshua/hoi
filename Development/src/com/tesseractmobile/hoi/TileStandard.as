@@ -1,7 +1,11 @@
 package com.tesseractmobile.hoi 
 {
+	import assets.img;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.display.Graphics;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	/**
@@ -19,27 +23,42 @@ package com.tesseractmobile.hoi
 		private var _id : int;
 		private var _eventListeners : Vector.<Function> = new Vector.<Function>();
 		private var _entity : Entity;
+		private var _bitmap : Bitmap;
 		
 		public function TileStandard(id : int, rect : Rectangle, borders : Borders)
 		{
 			_id = id;
 			_rect = rect;
 			this._borders = borders;
+			//Create bitmap
 			
+			//var bmData : BitmapData = img.sourceMapping();
+			var bitmap : Bitmap = new img.testTiles;
+			var bmData : BitmapData = bitmap.bitmapData;
+			_bitmap = new Bitmap();
+			_bitmap.bitmapData = new BitmapData(Main.SIZE, Main.SIZE);
+	
+			_bitmap.bitmapData.copyPixels(bmData,new Rectangle(Main.SIZE * 2, Main.SIZE * 4, Main.SIZE, Main.SIZE), new Point(0, 0));
+			
+			//_bitmap.width = Main.SIZE;
+			//_bitmap.height = Main.SIZE;
+			_bitmap.x = rect.left;
+			_bitmap.y = rect.top;
 			//Create Sprite
 			_sprite = new Sprite();
 			_sprite.x = rect.left;
 			_sprite.y = rect.top;
 			var g : Graphics = _sprite.graphics;
+			
 			//Test color
-			g.beginFill(0x222222, 1.0);
+			g.beginFill(0x222222, 0.0);
 			g.drawRect(0, 0, rect.width, rect.height);
 			g.endFill();
 			//Test text - remove this later
-			var text : TextField = new TextField();
+			//var text : TextField = new TextField();
 			//text.text = String(xPos / size) + "," + String(yPos / size);
-			text.text = getBorderText(borders);
-			_sprite.addChild(text);
+			//text.text = getBorderText(borders);
+			//_sprite.addChild(text);
 		}
 		
 		private function getBorderText(borders : Borders) : String {
@@ -127,6 +146,10 @@ package com.tesseractmobile.hoi
 		 */
 		public function removeEntity(entiy : Entity) : void {
 			_entity = null;
+		}
+		
+		public function getBitmap() : Bitmap {
+			return _bitmap;
 		}
 	}
 
