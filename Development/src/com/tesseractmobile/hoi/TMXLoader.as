@@ -1,6 +1,8 @@
 package com.tesseractmobile.hoi 
 {
 	import assets.img;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	/**
 	 * Used to load maps from .tmx files.
 	 * <p>
@@ -30,6 +32,9 @@ package com.tesseractmobile.hoi
 			var row : uint;
 			var col : uint;
 			var i : uint;
+			var j : uint;
+			var cols : uint;
+			var rows : uint;
 			
 			var tmxMap : TMXMap = new TMXMap;
 			tmxMap.width = uint(mapXML.@width);
@@ -45,7 +50,7 @@ package com.tesseractmobile.hoi
 				tmxLayer.height = uint(layerXML.@height);
 				tmxLayer.properties = { };
 				for each (var layerPropXML : XML in tmxLayer.property) {
-					tmxLayer.properties[String(tmxLayer.@name)] = String(tmxLayer.@value);
+					tmxLayer.properties[String(layerPropXML.@name)] = String(layerPropXML.@value);
 				}
 				tmxLayer.tids = new Vector.<Vector.<uint>>;
 				var tidsStrs : Array = String(layerXML.data.text()).split(",");
@@ -62,7 +67,46 @@ package com.tesseractmobile.hoi
 			for each (var ogroupXML : XML in mapXML.objectgroup) {
 				var tmxObjGroup : TMXObjectGroup = new TMXObjectGroup;
 				tmxObjGroup.map = tmxMap;
-				tmxObjGroup.name = String(tmxMap);
+				tmxObjGroup.name = String(ogroupXML.@name);
+				tmxObjGroup.properties = { };
+				for each (var ogroupPropXML : XML in ogroupXML) {
+					tmxObjGroup.properties[String(ogroupPropXML.@name)] = String(ogroupPropXML.@value);
+				}
+				tmxObjGroup.objects = new Vector.<TMXObject>;
+				for (var objectXML : XML in ogroupXML.object) {
+					var tmxObject : TMXObject = new TMXObject;
+					tmxObject.group = tmxObjGroup;
+					tmxObject.name = String(objectXML.@name);
+					tmxObject.type = String(objectXML.@type);
+					tmxObject.x = uint(objectXML.@x);
+					tmxObject.y = uint(objectXML.@y);
+					tmxObject.width = uint(objectXML.@width);
+					tmxObject.height = uint(objectXML.@height);
+					tmxObject.properties = { };
+					for (var objectPropsXML : XML in objectXML.property) {
+						tmxObject.properties[String(objectPropsXML.@name)] = String(objectPropsXML.@value);
+					}
+					tmxObjGroup.objects.push(tmxObject);
+				}
+			}
+			
+			for each (var tilesetXML : XML in mapXML.tileset) {
+				var tmxTileset : TMXTileset = new TMXTileset;
+				tmxTileset.map = tmxMap;
+				tmxTileset.name = tilesetXML.@name;
+				tmxTileset.tileWidth = uint(tilesetXML.@width);
+				tmxTileset.tileHeight = uint(tilesetXML.@height);
+				tmxTileset.firstgid = uint(tilesetXML.@firstgid);
+				tmxTileset.source = String(tilesetXML.@source);
+				tmxTileset.bitmapData = Bitmap(new img.sourceMapping[tmxTileset.source]).bitmapData;
+				tmxTileset.tiles = new Vector.<TMXTile>;
+				cols = tmxTileset.bitmapData.width / tmxTileset.tileWidth;
+				rows = tmxTileset.bitmapData.height / tmxTileset.tileHeight;
+				for (j = 0; j < rows; j++) {
+					for (i = 0; i < cols; i++) {
+						
+					}
+				}
 			}
 			
 			return tmxMap;

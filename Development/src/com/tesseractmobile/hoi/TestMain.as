@@ -1,6 +1,8 @@
 package com.tesseractmobile.hoi 
 {
 	import assets.img;
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	/**
 	 * ...
@@ -11,8 +13,14 @@ package com.tesseractmobile.hoi
 		
 		public function TestMain() 
 		{
-			for (var propname : String in img.testTiles)
-				trace(propname);
+			var bmp : Bitmap = new img.testTiles();
+			var bmpData : BitmapData = bmp.bitmapData;
+			bmpData.copyPixels(
+			
+			
+			
+			var bmp2 : Bitmap = new Bitmap(bmpData);
+			addChild(bmp2);
 		}
 		
 	}
