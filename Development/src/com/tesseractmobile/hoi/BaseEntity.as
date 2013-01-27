@@ -4,6 +4,7 @@ package com.tesseractmobile.hoi
 	import flash.display.Graphics;
 	import flash.errors.IllegalOperationError;
 	import flash.geom.Rectangle;
+	import flash.display.Bitmap;
 	/**
 	 * ...
 	 * @author Joshua Frank
@@ -129,6 +130,10 @@ package com.tesseractmobile.hoi
 		
 		public function setMoveFunction(func : Function) : void {
 			_moveFunction = func;
+		}
+		
+		public function getBitmap() : Bitmap {
+			return null;
 		}
 	}
 
