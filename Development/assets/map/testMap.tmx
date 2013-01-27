@@ -33,12 +33,27 @@
 13,11,11,11,11,11,11,11,11,11,11,11,11,11,11,16
 </data>
  </layer>
- <objectgroup name="Object Layer 1" width="16" height="12">
-  <object name="Dave" type="Human" x="557" y="149">
+ <objectgroup color="#31a457" name="FlamingPiller" width="16" height="12">
+  <object x="448" y="256"/>
+ </objectgroup>
+ <objectgroup name="Gargoyle" width="16" height="12">
+  <object x="704" y="192"/>
+  <object x="704" y="256"/>
+  <object x="704" y="192"/>
+  <object x="704" y="256"/>
+  <object x="704" y="192"/>
+  <object x="832" y="384"/>
+  <object x="640" y="448"/>
+  <object x="704" y="256">
    <properties>
-    <property name="wib" value="wob"/>
+    <property name="dir" value="up"/>
    </properties>
   </object>
-  <object x="668" y="194" width="80" height="64"/>
+  <object x="640" y="448">
+   <properties>
+    <property name="dir" value="left"/>
+   </properties>
+  </object>
+  <object x="832" y="384"/>
  </objectgroup>
 </map>
