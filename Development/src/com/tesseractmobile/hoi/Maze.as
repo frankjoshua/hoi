@@ -1,5 +1,6 @@
 package com.tesseractmobile.hoi 
 {
+	import flash.geom.Rectangle;
 	/**
 	 * ...
 	 * @author Joshua Frank
@@ -16,7 +17,7 @@ package com.tesseractmobile.hoi
 				var row : Vector.<Tile> = new Vector.<Tile>;
 				for (var r : int = 0; r < rows; r++) {
 					var borders : Borders = new Borders(r == 0, c == 0, r == rows - 1, c == col - 1);
-					row.push(null);
+					row.push(new TileStandard(0, new Rectangle(r * tileSize, c * tileSize, tileSize, tileSize), borders));
 				}
 				grid.push(row);
 			}

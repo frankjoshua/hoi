@@ -1,5 +1,6 @@
 package com.tesseractmobile.hoi 
 {
+	import flash.geom.Rectangle;
 	
 	/**
 	 * ...
@@ -7,8 +8,10 @@ package com.tesseractmobile.hoi
 	 */
 	public interface Tile extends Drawable
 	{
-		function getColor() : int;
 		function getEdge(edge : int) : Boolean;
+		function addEntity(entity : Entity) : void;
+		function addEventListener(listener : Function) : void;
+		function removeEventListener(listener : Function) : void;
 	}
 	
 }

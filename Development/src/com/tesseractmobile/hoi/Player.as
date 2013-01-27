@@ -1,5 +1,6 @@
 package com.tesseractmobile.hoi 
 {
+	import flash.geom.Rectangle;
 	
 	/**
 	 * ...
@@ -8,11 +9,14 @@ package com.tesseractmobile.hoi
 	public class Player extends BaseEntity 
 	{
 		
-		public function Player(xPos : int, yPos : int, size : int) 
+		public function Player(rect : Rectangle) 
 		{
-			super(xPos, yPos, size);
+			super(rect);
 		}
 				
+		override public function getType() : int {
+			return BaseEntity.PLAYER_TYPE;
+		}
 	}
 
 }
