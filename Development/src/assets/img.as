@@ -38,6 +38,7 @@ package assets
 			"../img/Coldiron-tiles.gif" : Coldiron_tiles,
 			"../img/Enemy-Switch.gif" : Enemy_Switch,
 			"../img/Pulse-Switch.gif" : Pulse_Switch,
+			"../img/Path-Switch.gif" : Path_Switch,
 			"../img/Niches.gif" : Niches
 		};
 	}

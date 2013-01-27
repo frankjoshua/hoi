@@ -19,14 +19,8 @@ package com.tesseractmobile.hoi
 			for (var src : String in img.sourceMapping)
 				loader.setPathSource(src, img.sourceMapping[src] as Class);
 			
-			var tmap : TMXMap = loader.fromXMLAsset(map.testMap);
+			var tmap : TMXMap = loader.fromXMLAsset(map.SARlevel1);
 			trace(tmap);
-			
-			var tile : TMXTile = tmap.getTileByGid(12);
-			tile.properties.hasOwnProperty('borders')
-			tile.properties.borders
-			var str : String = "sdgsdfg";
-			str.toLowerCase().indexOf("up");
 			
 		}
 		
