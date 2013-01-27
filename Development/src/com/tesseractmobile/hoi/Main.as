@@ -1,5 +1,6 @@
 package com.tesseractmobile.hoi
 {
+	import assets.music;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -36,6 +37,11 @@ package com.tesseractmobile.hoi
 		
 		public function Main():void 
 		{
+			
+			/****************
+				Music test!
+			*****************/
+			MusicPlayer.play(music.machine);
 			
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);

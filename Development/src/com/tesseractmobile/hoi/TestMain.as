@@ -1,9 +1,8 @@
 package com.tesseractmobile.hoi 
 {
-	import assets.img;
-	import flash.display.Bitmap;
-	import flash.display.BitmapData;
+	import assets.music;
 	import flash.display.Sprite;
+	
 	/**
 	 * ...
 	 * @author us
@@ -11,17 +10,13 @@ package com.tesseractmobile.hoi
 	public class TestMain extends Sprite
 	{
 		
+		
 		public function TestMain() 
 		{
-			var bmp : Bitmap = new img.testTiles();
-			var bmpData : BitmapData = bmp.bitmapData;
-			bmpData.copyPixels(
-			
-			
-			
-			var bmp2 : Bitmap = new Bitmap(bmpData);
-			addChild(bmp2);
+			MusicPlayer.play(music.tower);
 		}
+		
+		
 		
 	}
 
