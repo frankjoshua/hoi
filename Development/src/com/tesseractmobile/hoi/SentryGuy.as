@@ -28,6 +28,8 @@ package com.tesseractmobile.hoi
 			g.beginFill(0x00FF00, 1.0);
 			g.drawRect(0, 0, rect.width, rect.height);
 			g.endFill();
+			//Set Bitmap
+			setBitmap(BitmapManager.getInstance().getBadGuyImages(16));
 		}
 		
 		override public function update(elapsedTime : int) : void {

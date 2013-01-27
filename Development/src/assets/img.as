@@ -9,7 +9,7 @@ package assets
 		static public const testTiles : Class;
 		
 		public static var sourceMapping : Object =  {
-			"../img/Rivets-and-Grate.gif" : testTiles
+			"../img/testTiles.png" : testTiles
 		};
 	}
 

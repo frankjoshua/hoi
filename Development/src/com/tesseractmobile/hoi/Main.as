@@ -16,7 +16,7 @@ package com.tesseractmobile.hoi
 	{
 		//Default grid size
 		static public const TILE_SIZE : int = 64;
-		static public const SIZE : int = 64;
+		static public const SIZE : int = 32;
 		static public const HEIGHT : int = 9;
 		static public const WIDTH : int = 16;
 		//Directional Contant
@@ -79,10 +79,16 @@ package com.tesseractmobile.hoi
 				var partolGuy : PatrolGuy = new PatrolGuy(new Rectangle((width - 1) * size, (height - 1) * size, SIZE, SIZE));
 				//partolGuy.setTile(maze.getGrid()[0][0]);
 				maze.getGrid()[0][0].addEventListener(returnEntity);
+				if(partolGuy.getBitmap() != null){
+					addChild(partolGuy.getBitmap());
+				}
 				addChild(partolGuy.getSprite());
 				
 				_entityList.push(partolGuy);
 				var sentryGuy : SentryGuy = new SentryGuy(new Rectangle((4) * size, (4) * size, SIZE, SIZE));
+				if(sentryGuy.getBitmap() != null){
+					addChild(sentryGuy.getBitmap());
+				}
 				addChild(sentryGuy.getSprite());
 				sentryGuy.blastTile(maze.getGrid()[4][3]);
 				sentryGuy.blastTile(maze.getGrid()[4][2]);

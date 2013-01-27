@@ -1,5 +1,6 @@
 package com.tesseractmobile.hoi 
 {
+	import assets.BadGuyImages;
 	import assets.RobotImages;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -14,6 +15,7 @@ package com.tesseractmobile.hoi
 	{
 		private var _bitmaps : Array;
 		private var _tileBitmaps : Array;
+		private var _badGuyImages : Array;
 		//Singleton Bitmapmanger
 		private static var instance : BitmapManager;
 		//Image positions
@@ -28,10 +30,11 @@ package com.tesseractmobile.hoi
 			_bitmaps = new Array(100);
 			//Initilize tile array
 			_tileBitmaps = new Array(100);
+			_badGuyImages = new Array(100);
 			//Chop up images
 			chopImages(_tileBitmaps, new img.testTiles);
 			chopImages(_bitmaps, new RobotImages.images);
-					
+			chopImages(_badGuyImages, new BadGuyImages.images);		
 		}
 		
 		public static function getInstance() : BitmapManager {
@@ -47,6 +50,10 @@ package com.tesseractmobile.hoi
 		
 		public function getTileImage(pos : int) : Bitmap {
 			return _tileBitmaps[pos];
+		}
+		
+		public function getBadGuyImages(pos : int) : Bitmap {
+			return _badGuyImages[pos];
 		}
 
 		/**

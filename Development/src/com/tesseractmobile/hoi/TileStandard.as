@@ -25,13 +25,27 @@ package com.tesseractmobile.hoi
 		private var _entity : Entity;
 		private var _bitmap : Bitmap;
 		
-		public function TileStandard(id : int, rect : Rectangle, borders : Borders)
+		public function TileStandard(id : int, rect : Rectangle, tmxTile : TMXTile)
 		{
 			_id = id;
 			_rect = rect;
-			this._borders = borders;
+			//Setup Borders
+			
+			//this._borders = borders;
 			//Create bitmap
-			_bitmap = new Bitmap(BitmapManager.getInstance().getTileImage(3).bitmapData);
+			//_bitmap = new Bitmap(BitmapManager.getInstance().getTileImage(3).bitmapData);
+			if(tmxTile != null){
+				_bitmap = new Bitmap(tmxTile.bitmapData);
+				if (tmxTile.properties.hasOwnProperty('borders')) {
+					var borderStr : String = (tmxTile.properties.borders as String).toLowerCase();
+					_borders = new Borders(borderStr.indexOf('left') > 0, borderStr.indexOf('top') > 0, borderStr.indexOf('right') > 0, borderStr.indexOf('bottom') > 0);
+				}
+			} else {
+				//_bitmap = new Bitmap(BitmapManager.getInstance().getTileImage(3).bitmapData);
+				_bitmap = new Bitmap(BitmapManager.getInstance().getTileImage(2).bitmapData);
+				_borders = new Borders(false, false, false, false);
+			}
+			//_bitmap.bitmapData.copyPixels(tmxTile.bitmapData, tmxTile.bitmapData.rect, new Point(0, 0));
 			//Position bimap
 			_bitmap.x = rect.left;
 			_bitmap.y = rect.top;
