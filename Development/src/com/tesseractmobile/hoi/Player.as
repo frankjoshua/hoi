@@ -36,7 +36,8 @@ package com.tesseractmobile.hoi
 		override public function update(elapsedTime : int) : void {
 			//Update time for image switching
 			_timer += elapsedTime;
-			if(true) {
+			if (_timer > 1000) {
+				_timer = 0;
 				//Switch bitmaps based on state
 				switch(_state) {
 					case STANDING:
@@ -45,7 +46,8 @@ package com.tesseractmobile.hoi
 					case MOVING_UP:
 					case MOVING_DOWN:
 					case MOVING_RIGHT:
-						//setBitmap(BitmapManager.getInstance().getTileImage(0));
+					case MOVING_LEFT:
+						
 						break;
 				}
 			}
@@ -60,10 +62,12 @@ package com.tesseractmobile.hoi
 					//setBitmap(BitmapManager.getInstance().getBitmap(BitmapManager.ROBOT_STAND));
 					break;
 				case MOVING_DOWN:
+					//setBitmap(BitmapManager.getInstance().getBitmap(BitmapManager.ROBOT_STAND));
+					break;
 				case MOVING_UP:
 				case MOVING_LEFT:
 				case MOVING_RIGHT:
-					//setBitmap(BitmapManager.getInstance().getBitmap(BitmapManager.ROBOT_ROCK_1));
+					//setBitmap(BitmapManager.getInstance().getTileImage(0));
 					break;
 			}
 		}

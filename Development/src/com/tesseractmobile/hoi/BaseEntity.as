@@ -3,6 +3,7 @@ package com.tesseractmobile.hoi
 	import flash.display.Sprite;
 	import flash.display.Graphics;
 	import flash.errors.IllegalOperationError;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.display.Bitmap;
 	/**
@@ -64,16 +65,17 @@ package com.tesseractmobile.hoi
 				if (_xVel == 0 && _yVel == 0) {
 					setDirection(Main.STOP);
 				}
-				//Update Sprite
-				if(_sprite != null){
-					_sprite.y = _rect.top;
-					_sprite.x = _rect.left;
-				}
-				//Update Bitmap
-				if(_bitmap != null){
-					_bitmap.y = _rect.top;
-					_bitmap.x = _rect.left;
-				}
+				
+			}
+			//Update Sprite
+			if(_sprite != null){
+				_sprite.y = _rect.top;
+				_sprite.x = _rect.left;
+			}
+			//Update Bitmap
+			if(_bitmap != null){
+				_bitmap.y = _rect.top;
+				_bitmap.x = _rect.left;
 			}
 		}
 		
@@ -141,7 +143,12 @@ package com.tesseractmobile.hoi
 		}
 		
 		public function setBitmap(bitmap : Bitmap) : void {
+			if (_bitmap != null) {
+				_bitmap.bitmapData.copyPixels(bitmap.bitmapData, bitmap.bitmapData.rect, new Point(0, 0));
+			}
 			_bitmap = bitmap;
+			_bitmap.x = _rect.left;
+			_bitmap.y = _rect.top;
 		}
 		
 		public function setDirection(direction : int) : void {
