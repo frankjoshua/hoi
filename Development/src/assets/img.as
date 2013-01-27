@@ -35,7 +35,7 @@ package assets
 		public static var sourceMapping : Object =  {
 			"../img/testTiles.png" : testTiles,
 			"../img/Rivets-and-Grate.gif" : Rivets_and_Grate,
-			"../img/Coliron-tiles.gif" : Coldiron_tiles,
+			"../img/Coldiron-tiles.gif" : Coldiron_tiles,
 			"../img/Enemy-Switch.gif" : Enemy_Switch,
 			"../img/Pulse-Switch.gif" : Pulse_Switch,
 			"../img/Niches.gif" : Niches
