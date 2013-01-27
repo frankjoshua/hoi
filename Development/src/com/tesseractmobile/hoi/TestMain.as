@@ -1,5 +1,7 @@
 package com.tesseractmobile.hoi 
 {
+	import assets.img;
+	import assets.map;
 	import assets.music;
 	import flash.display.Sprite;
 	
@@ -13,7 +15,12 @@ package com.tesseractmobile.hoi
 		
 		public function TestMain() 
 		{
-			MusicPlayer.play(music.tower);
+			var loader : TMXLoader = new TMXLoader;
+			for (var src : String in img.sourceMapping)
+				loader.setPathSource(src, img.sourceMapping[src] as Class);
+			
+			var tmap : TMXMap = loader.fromXMLAsset(map.testMap);
+			trace(tmap);
 		}
 		
 		
