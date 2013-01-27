@@ -18,7 +18,7 @@ package com.tesseractmobile.hoi
 			for (var src : String in img.sourceMapping){
 				loader.setPathSource(src, img.sourceMapping[src] as Class);
 			}
-			var tmap : TMXMap = loader.fromXMLAsset(map.testMap);
+			var tmap : TMXMap = loader.fromXMLAsset(map.SARlevel1);
 			
 			var tmxLayer : TMXLayer = tmap.layers[0];
 			
