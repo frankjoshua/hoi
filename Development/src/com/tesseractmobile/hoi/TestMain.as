@@ -21,6 +21,13 @@ package com.tesseractmobile.hoi
 			
 			var tmap : TMXMap = loader.fromXMLAsset(map.testMap);
 			trace(tmap);
+			
+			var tile : TMXTile = tmap.getTileByGid(12);
+			tile.properties.hasOwnProperty('borders')
+			tile.properties.borders
+			var str : String = "sdgsdfg";
+			str.toLowerCase().indexOf("up");
+			
 		}
 		
 		

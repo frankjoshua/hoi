@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="Maze Tiles" tilewidth="64" tileheight="64">
+  <image source="../img/Rivets-and-Grate.gif" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="border" value="left, right"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="border" value="up, down"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="border" value="up, down, left, right"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="border" value="up"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="border" value="right"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="border" value="down"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="border" value="left"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="border" value="up, left, right"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="border" value="up, right, down"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="border" value="left, down, right"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="border" value="up, left, down"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="border" value="up, right"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="border" value="down, right"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="border" value="left, down"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="border" value="left, up"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="17" name="Special Tiles" tilewidth="64" tileheight="64">
+  <image source="../img/Coldiron-tiles.gif" width="256" height="128"/>
+ </tileset>
+ <tileset firstgid="25" name="Wedges" tilewidth="64" tileheight="64">
+  <image source="../img/Niches.gif" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="29" name="Enemy Switch" tilewidth="64" tileheight="64">
+  <image source="../img/Enemy-Switch.gif" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="border" value="left, right"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="border" value="up,  down"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="border" value="top"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="border" value="right"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="border" value="bottom"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="border" value="left"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="border" value="left, up, right"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="border" value="up, right, down"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="border" value="left, down, right"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="border" value="up, left, down"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="border" value="up,  right"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="border" value="right, down"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="border" value="left, down"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="border" value="left, up"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="45" name="Path Switch" tilewidth="64" tileheight="64">
+  <image source="../img/Path-Switch.gif" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="border" value="left, right"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="border" value="up, down"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="border" value="top"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="border" value="right"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="border" value="down"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="border" value="left"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="border" value="left, up, right"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="border" value="up, right, down"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="border" value="left, down, right"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="border" value="up,  left, down"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="border" value="up, right"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="border" value="right, down"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="border" value="left, down"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="border" value="left, top"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="61" name="Pulse Switch" tilewidth="64" tileheight="64">
+  <image source="../img/Pulse-Switch.gif" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="border" value="left, right"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="border" value="up, down"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="border" value="top"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="border" value="right"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="border" value="down"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="border" value="left"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="border" value="left, up, right"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="border" value="up, right, down"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="border" value="left, down, right"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="border" value="up, left, down"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="border" value="up, right"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="border" value="down, right"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="border" value="left, down"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="border" value="left, up"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="16" height="12">
+  <data encoding="csv">
+16,5,5,2,5,10,9,9,53,9,9,4,4,16,5,13,
+8,6,1,4,8,2,3,3,3,3,6,4,4,1,1,1,
+8,6,1,4,15,2,3,3,3,3,7,5,2,6,1,1,
+8,3,6,4,4,16,14,11,11,11,4,1,4,8,3,6,
+8,6,8,10,4,1,4,4,4,4,4,1,4,1,1,1,
+8,6,1,4,16,3,13,0,0,12,2,6,4,1,1,1,
+8,14,1,4,1,1,1,0,0,4,4,1,4,8,7,14,
+1,16,3,2,6,1,1,16,2,5,2,3,5,14,16,13,
+1,11,1,4,15,3,14,1,4,1,16,14,15,2,14,11,
+8,2,6,4,4,8,5,7,5,7,3,13,4,4,4,4,
+1,53,1,4,4,1,8,2,47,2,6,1,4,9,4,37,
+15,14,15,2,2,7,7,2,7,2,7,7,2,7,2,14
+</data>
+ </layer>
+ <layer name="Wedge Layer" width="16" height="12">
+  <data encoding="csv">
+0,0,25,0,26,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,28,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,26,0,26,0,0,
+0,0,0,0,0,25,0,0,0,0,0,0,0,0,0,0,
+0,0,25,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,27,0,0,0,0,0,26,0,0,0,0,
+25,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,
+0,0,25,0,26,0,0,0,0,26,0,28,0,28,0,0,
+0,0,0,0,0,26,0,0,0,0,0,0,0,27,28,0,
+25,0,26,0,0,0,0,28,0,28,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,27,0,28,0,28
+</data>
+ </layer>
+ <layer name="Wedge Layer 2" width="16" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,25,27,25,0,28,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,27,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,28,0,0,0,0,0,28,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,27,0,28,0,0,25,0,25,0,27,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+27,0,28,0,0,0,0,27,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,27,0,0,28,0,0,0,0,0,0,0,27,0,0
+</data>
+ </layer>
+ <objectgroup color="#ff0000" name="Gargoyle" width="16" height="12">
+  <object name="Gargoyle1" x="544" y="739">
+   <properties>
+    <property name="dir" value="up"/>
+   </properties>
+  </object>
+  <object name="Gargoyle 3" x="544" y="223">
+   <properties>
+    <property name="dir" value="up"/>
+   </properties>
+  </object>
+  <object name="Gargoyle2" x="480" y="222">
+   <properties>
+    <property name="dir" value="up"/>
+   </properties>
+  </object>
+  <object name="Gargoyle 4" x="609" y="35">
+   <properties>
+    <property name="dir" value="down"/>
+   </properties>
+  </object>
+  <object name="Gargoyle 5" x="866" y="673">
+   <properties>
+    <property name="dir" value="down"/>
+   </properties>
+  </object>
+  <object name="Gargoyle 6" x="548" y="603">
+   <properties>
+    <property name="dir" value="down"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff780a" name="Dozer" width="16" height="12">
+  <object name="Dozer 1" x="926" y="231">
+   <properties>
+    <property name="dir" value="down"/>
+    <property name="dis" value="7"/>
+   </properties>
+  </object>
+  <object name="Dozer 2" x="22" y="24">
+   <properties>
+    <property name="dir" value="down"/>
+    <property name="dis" value="6"/>
+   </properties>
+  </object>
+  <object name="Dozer 3" x="100" y="428">
+   <properties>
+    <property name="dir" value="up"/>
+    <property name="dis" value="6"/>
+   </properties>
+  </object>
+  <object name="Dozer 4" x="351" y="453">
+   <properties>
+    <property name="dir" value="up"/>
+    <property name="dis" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#00aa00" name="Player" width="16" height="12">
+  <object x="668" y="349"/>
+ </objectgroup>
+ <layer name="Wedge Layer 3" width="16" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,28,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

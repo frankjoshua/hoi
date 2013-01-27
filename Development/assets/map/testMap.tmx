@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="16" height="12" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="main" tilewidth="64" tileheight="64">
-  <image source="../img/testTiles.png" width="256" height="256"/>
+  <image source="../img/Rivets-and-Grate.gif" width="256" height="256"/>
   <tile id="0">
    <properties>
     <property name="foo" value="bar"/>
@@ -15,7 +15,7 @@
   </tile>
  </tileset>
  <tileset firstgid="17" name="sub" tilewidth="64" tileheight="64">
-  <image source="../img/testTiles.png" width="256" height="256"/>
+  <image source="../img/Rivets-and-Grate.gif" width="256" height="256"/>
   <tile id="0">
    <properties>
     <property name="tileset2prop" value="tileset2val"/>
