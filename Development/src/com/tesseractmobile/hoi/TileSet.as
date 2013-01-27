@@ -7,6 +7,7 @@ package com.tesseractmobile.hoi
 	
 	/**
 	 * Represents a tilemap from the TMX.
+	 * The numbder of tiles in the set depends on the source bitmap data and tile size.
 	 * @author Bradley Harms
 	 */
 	public class TileSet 
@@ -18,6 +19,7 @@ package com.tesseractmobile.hoi
 		private var _tileHeight : uint;
 		private var _bitmapData : BitmapData;
 		private var _tileBitmapDatas : Vector.<Bitmap> = new Vector.<Bitmap>;
+		private var _tiles : Vector.<TileGraphical> = new Vector.<TileGraphical>;
 		
 		public function TileSet(gid : uint, tileWidth : uint, tileHeight : uint, source : String, bitmapData : BitmapData) 
 		{
@@ -41,6 +43,11 @@ package com.tesseractmobile.hoi
 					);
 					_tileBitmaps.push(bmp);
 				}
+			}
+			
+			// Number of tiles depends on the number of bitmap slices
+			for each (var _bdata : BitmapData in _tiles) {
+				var tile : TileGraphical = new TileGraphical(
 			}
 		}
 		
@@ -78,6 +85,10 @@ package com.tesseractmobile.hoi
 		public function getTidBitmapData(tid : uint) : BitmapData {
 			return _tileBitmapDatas[tid - _gid];
 		}
+		
+		/**
+		 * Add a tile with a given ID.
+		 */
 	}
 
 }

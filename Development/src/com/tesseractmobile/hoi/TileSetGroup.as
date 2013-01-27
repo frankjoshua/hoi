@@ -1,6 +1,7 @@
 package com.tesseractmobile.hoi 
 {
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.utils.Dictionary;
 	/**
 	 * Represents the complete collection of all tilesets in the tmx.
@@ -40,8 +41,14 @@ package com.tesseractmobile.hoi
 			}
 		}
 		
-		public function getTileBitmap(tid : uint) : Bitmap {
-			
+		/**
+		 * Get the bitmap data for the corresponding tid.
+		 * @param	tid
+		 * @return
+		 */
+		public function getTidBitmapData(tid : uint) : BitmapData {
+			var tileset : TileSet = getTilesetForTid(tid);
+			return tileset.getTidBitmapData(tid);
 		}
 		
 	}

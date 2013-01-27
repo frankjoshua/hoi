@@ -20,81 +20,52 @@ package com.tesseractmobile.hoi
 	 */
 	public class TMXLoader 
 	{
-		private var _objectFactories : Object = new Object();
+		public var objectFactories : Object;
 		
-		public function TMXLoader() 
-		{
+		public function TMXLoader () {
 			
 		}
 		
-		/**
-		 * Associate a factory function with a given object type name from the TMX data.
-		 * <p>
-		 * Functions must be of the form:
-		 * </p>
-		 * <p>
-		 * <code>function factory(type : String, x : Number, y : Number, w : Number, h : Number, tmxProps : Objects) : Entity;</code>
-		 * </p>
-		 * 
-		 * @param	typeName
-		 * @param	factory
-		 */
-		public function setObjectFactory(type : String, factory : Function) : void {
-			_objectFactories[type] = factory;
-		}
-		
-		/**
-		 * Return the factory function corresponding to the given type string.
-		 * @param	Name of the object type according to the TMX file.
-		 * @return The factory function
-		 */
-		public function getObjectFactory(type: String) : Function{
-			return _objectFactories[type] as Function;
-		}
-		
-		/**
-		 * Remove the factory with the given string.
-		 * @param	type
-		 */
-		public function delObjectFactory(type : String) : void {
-			delete _objectFactories[type];
-		}
-		
-		/**
-		 * Pass in an XML object and get a LevelData in return.
-		 * @param	xml
-		 */
-		public function loadFromXML(tmx:XML) : LevelData {
-			var mapWidth : uint = uint(tmx.@width);
-			var mapHeight : uint = uint(tmx.@height);
-			var mapTileWidth : uint = uint(tmx.@tilewidth);
-			var mapTileHeight : uint = uint(tmx.@tileheight);
-			var tdata : Vector.<uint> = new Vector.<uint>;
-			var maze : MazeGraphical;
-			var tiles : Vector.<TileGraphical> = new Vector.<TileGraphical>();
-			var tilesetGroup : TileSetGroup = new TileSetGroup;
+		public function fromXML(mapXML:XML) : TMXMap {
+			var row : uint;
+			var col : uint;
+			var i : uint;
 			
-			// Our map system uses the same width and height, so make sure the TMX does.
-			if (mapTileWidth != mapTileHeight) {
-				throw new Error("Map tile width must be equal to map tile height.");
+			var tmxMap : TMXMap = new TMXMap;
+			tmxMap.width = uint(mapXML.@width);
+			tmxMap.height = uint(mapXML.@height);
+			tmxMap.tileWidth = uint(mapXML.@tilewidth);
+			tmxMap.tileHeight = uint(mapXML.@tileheight);
+			
+			for each (var layerXML : XML in mapXML.layer) {
+				var tmxLayer : TMXLayer = new TMXLayer;
+				tmxLayer.map = tmxMap;
+				tmxLayer.name = layerXML.@name;
+				tmxLayer.width = uint(layerXML.@width);
+				tmxLayer.height = uint(layerXML.@height);
+				tmxLayer.properties = { };
+				for each (var layerPropXML : XML in tmxLayer.property) {
+					tmxLayer.properties[String(tmxLayer.@name)] = String(tmxLayer.@value);
+				}
+				tmxLayer.tids = new Vector.<Vector.<uint>>;
+				var tidsStrs : Array = String(layerXML.data.text()).split(",");
+				i = 0;
+				for (row = 0; row < tmxLayer.height; row++) {
+					tmxLayer.tids.push(new Vector.<uint>);
+					for (col = 0; col < tmxLayer.height; col++) {
+						tmxLayer.tids[row].push(uint(tidsStrs[i]));
+						i++;
+					}
+				}
 			}
 			
-			// Load tileset data first.
-			for each (var tilesetXML : XML in tmx.tileset) {
-				var tilesetGID : uint = uint(tilesetXML.@firstgid);
-				var tilesetTileWidth : uint = uint(tilesetXML.@tilewidth);
-				var tilesetTileHeight : uint = uint(tilesetXML.@tileheight);
-				var tilesetSource : String = tilessetXML.@source;
-				var tilesetBitmapData = img.sourceMapping[tilesetSource];
-				var tileset : TileSet = new TileSet(
-					tilesetGID,
-					tilesetTileWidth,
-					tilesetTileHeight,
-					tilesetSource,
-					tilesetBitmapData
-				);
+			for each (var ogroupXML : XML in mapXML.objectgroup) {
+				var tmxObjGroup : TMXObjectGroup = new TMXObjectGroup;
+				tmxObjGroup.map = tmxMap;
+				tmxObjGroup.name = String(tmxMap);
 			}
-
+			
+			return tmxMap;
 		}
 	}
 

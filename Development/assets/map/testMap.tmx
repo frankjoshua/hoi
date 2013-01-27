@@ -14,6 +14,14 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="17" name="sub" tilewidth="64" tileheight="64">
+  <image source="../img/testTiles.png" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="tileset2prop" value="tileset2val"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Tile Layer 1" width="16" height="12">
   <properties>
    <property name="sdgfsgd" value="wet3245325"/>
@@ -31,6 +39,22 @@
 9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
 9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,
 13,11,11,11,11,11,11,11,11,11,11,11,11,11,11,16
+</data>
+ </layer>
+ <layer name="Tile Layer 2" width="16" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,17,17,17,17,17,17,0,0,0,0,0,0,0,0,
+0,0,17,17,17,17,17,17,0,0,0,0,0,0,0,0,
+0,0,17,17,17,17,17,17,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup color="#31a457" name="FlamingPiller" width="16" height="12">
