@@ -59,7 +59,7 @@ package com.tesseractmobile.hoi
 		 */
 		public function getTileAt(col:uint, row:uint) : TMXTile {
 			if (row < 0 || col < 0 || row >= height || col >= width)
-				return ull;
+				return null;
 			var gid : uint = gids[row][col];
 			if (gid == 0)
 				return null;
