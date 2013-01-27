@@ -15,7 +15,7 @@ package com.tesseractmobile.hoi
 	public class TileStandard implements Tile
 	{
 		//kill function
-		static var _killPlayer : Function;
+		public static var _killPlayer : Function;
 		private var _color : int = 0;
 		private var _sprite : Sprite;
 		private var _borders : Borders;
@@ -31,19 +31,12 @@ package com.tesseractmobile.hoi
 			_rect = rect;
 			this._borders = borders;
 			//Create bitmap
-			
-			//var bmData : BitmapData = img.sourceMapping();
-			var bitmap : Bitmap = new img.testTiles;
-			var bmData : BitmapData = bitmap.bitmapData;
-			_bitmap = new Bitmap();
-			_bitmap.bitmapData = new BitmapData(Main.SIZE, Main.SIZE);
-	
-			_bitmap.bitmapData.copyPixels(bmData,new Rectangle(Main.SIZE * 2, Main.SIZE * 4, Main.SIZE, Main.SIZE), new Point(0, 0));
-			
-			//_bitmap.width = Main.SIZE;
-			//_bitmap.height = Main.SIZE;
+			_bitmap = new Bitmap(BitmapManager.getInstance().getTileImage(3).bitmapData);
+			//Position bimap
 			_bitmap.x = rect.left;
 			_bitmap.y = rect.top;
+			_bitmap.width = rect.width;
+			_bitmap.height = rect.height;
 			//Create Sprite
 			_sprite = new Sprite();
 			_sprite.x = rect.left;

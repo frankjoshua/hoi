@@ -15,9 +15,16 @@ package com.tesseractmobile.hoi
 	public class Main extends Sprite 
 	{
 		//Default grid size
-		static public const SIZE : int = 32;
+		static public const TILE_SIZE : int = 64;
+		static public const SIZE : int = 64;
 		static public const HEIGHT : int = 9;
 		static public const WIDTH : int = 16;
+		//Directional Contant
+		static public const UP : int = 0;
+		static public const DOWN : int = 1;
+		static public const LEFT : int = 2;
+		static public const RIGHT : int = 3;
+		static public const STOP : int = 4;
 		//Maze
 		private var maze : Maze;
 		//Game objects
@@ -63,7 +70,8 @@ package com.tesseractmobile.hoi
 			}
 			//Create game entities
 			//Create Player
-			player = new Player(new Rectangle(0,0,SIZE,SIZE));
+			player = new Player(new Rectangle(0, 0, SIZE, SIZE));
+			addChild(player.getBitmap());
 			addChild(player.getSprite());
 			_entityList.push(player);
 			
@@ -133,16 +141,14 @@ package com.tesseractmobile.hoi
 				var graphics : Graphics = _pulse.graphics;
 				graphics.clear();
 				_pulseRadius += PULSE_SPEED;
-				if (_pulseRadius > WIDTH * SIZE / 2 ) {
+				//Cheating with - 100
+				if (_pulseRadius - 100 > WIDTH * SIZE / 2 ) {
 					//Hide pulse
 					_pulseRadius = 1;
 					_showPulse = false;
 				} else {
 					//Draw pulse
-					graphics.beginFill(0xFFFFFF, 0.2);
-					graphics.lineStyle(5, 0xFFFFFF, 0.8);
-					graphics.drawCircle(0, 0, _pulseRadius);
-					graphics.endFill();
+					drawPulse(graphics);
 					//Check if player is touched by pulse
 					var playerXCenter : int = player.getRect().left + player.getRect().width / 2;
 					var playerYCenter : int = player.getRect().top + player.getRect().height / 2;
@@ -164,6 +170,30 @@ package com.tesseractmobile.hoi
 				}
 			}
 			
+		}
+		
+		/**
+		 * Pass the pulse Graphics objext
+		 * @param	graphics
+		 */
+		private function drawPulse(graphics : Graphics):void 
+		{
+			var pulseWidth : int = (WIDTH * SIZE - _pulseRadius) / 30;
+			//Inner ring
+			graphics.beginFill(0xFFFFFF, 0.1);
+			graphics.lineStyle(pulseWidth + 10, 0xFFFFFF, 0.2);
+			graphics.drawCircle(0, 0, _pulseRadius - 10);
+			graphics.endFill();
+			//Center Ring
+			graphics.beginFill(0xFFFFFF, 0.0);
+			graphics.lineStyle(pulseWidth, 0xFFFFFF, 0.5);
+			graphics.drawCircle(0, 0, _pulseRadius);
+			graphics.endFill();
+			//Outer Ring
+			graphics.beginFill(0xFFFFFF, 0.0);
+			graphics.lineStyle(pulseWidth - 2, 0xFFFFFF, 0.9);
+			graphics.drawCircle(0, 0, _pulseRadius + 5);
+			graphics.endFill();
 		}
 		
 		/**
@@ -199,8 +229,8 @@ package com.tesseractmobile.hoi
 					if (tile.contains(_scratchRect)) {
 						//Add tile to player to track location
 						entity.setTile(tile);
-						//Set up test trigger
-						//tile.addEventListener(shrinkPlayer);
+						//Tell entity what direction they moved
+						entity.setDirection(keyCodeToDirection(keyCode));
 						//Move worked
 						return true;
 					}
@@ -242,8 +272,25 @@ package com.tesseractmobile.hoi
 		}
 
 		public function killPlayer(event : EventType) : void {
-			player.getSprite().width = 4;
-			player.getSprite().height = 4;
+			//player.getSprite().width = 4;
+			//player.getSprite().height = 4;
+			player.getBitmap().height = player.getBitmap().height / 2;
+			player.getBitmap().width = player.getBitmap().width / 2;
+		}
+		
+		public static function keyCodeToDirection(keyCode : int) : int {
+			switch(keyCode) {
+				case Keyboard.UP:
+					return Main.UP;
+				case Keyboard.DOWN:
+					return Main.DOWN;
+				case Keyboard.LEFT:
+					return Main.LEFT;
+				case Keyboard.RIGHT:
+					return Main.RIGHT;	
+			}
+			//Not found
+			return -1;
 		}
 		
 	}

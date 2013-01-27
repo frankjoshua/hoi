@@ -23,22 +23,17 @@ package com.tesseractmobile.hoi
 		private var _tile : Tile;
 		private var _rect : Rectangle;
 		private var _speed : Number = 0.05;
+		private var _bitmap : Bitmap;
 		//Function to move entity
 		protected var _moveFunction : Function;
 		
 		public function BaseEntity(rect : Rectangle) 
 		{
+			//Set _rect
 			_rect = rect;
+			//Set inital destination as current location
 			_xDest = rect.left;
 			_yDest = rect.top;
-			//Create Sprite
-			_sprite = new Sprite();
-			_sprite.x = rect.left;
-			_sprite.y = rect.top;
-			var g : Graphics = _sprite.graphics;
-			g.beginFill(0xFF0000, 1.0);
-			g.drawRect(0, 0, rect.width, rect.height);
-			g.endFill();
 		}
 		
 		public function getSprite() : Sprite {
@@ -65,11 +60,20 @@ package com.tesseractmobile.hoi
 					_rect.left = _xDest;
 					_xVel = 0;
 				}
+				//Set direction to stopped if done moveing
+				if (_xVel == 0 && _yVel == 0) {
+					setDirection(Main.STOP);
+				}
 				//Update Sprite
-				_sprite.y = _rect.top;
-				_sprite.x = _rect.left;
-				//_sprite.width = _rect.width;
-				//_sprite.height = _rect.height;
+				if(_sprite != null){
+					_sprite.y = _rect.top;
+					_sprite.x = _rect.left;
+				}
+				//Update Bitmap
+				if(_bitmap != null){
+					_bitmap.y = _rect.top;
+					_bitmap.x = _rect.left;
+				}
 			}
 		}
 		
@@ -133,7 +137,15 @@ package com.tesseractmobile.hoi
 		}
 		
 		public function getBitmap() : Bitmap {
-			return null;
+			return _bitmap;
+		}
+		
+		public function setBitmap(bitmap : Bitmap) : void {
+			_bitmap = bitmap;
+		}
+		
+		public function setDirection(direction : int) : void {
+			//Should be overriden
 		}
 	}
 

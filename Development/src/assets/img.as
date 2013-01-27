@@ -5,11 +5,11 @@ package assets
 	 */
 	public final class img {
 		
-		[Embed(source = "../../assets/img/testTiles.png")]
+		[Embed(source = "../../assets/img/Rivets-and-Grate.gif")]
 		static public const testTiles : Class;
 		
 		public static var sourceMapping : Object =  {
-			"../img/testTiles.png" : testTiles
+			"../img/Rivets-and-Grate.gif" : testTiles
 		};
 	}
 

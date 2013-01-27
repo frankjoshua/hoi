@@ -12,6 +12,7 @@ package com.tesseractmobile.hoi
 		function setTile(tile : Tile) : void;
 		function setMoveFunction(func : Function) : void;
 		function setSpeed(speed : Number) : void;
+		function setDirection(direction : int) : void;
 	}
 	
 }

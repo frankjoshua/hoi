@@ -1,5 +1,6 @@
 package com.tesseractmobile.hoi 
 {
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	
@@ -25,6 +26,8 @@ package com.tesseractmobile.hoi
 		 */
 		function contains(rect : Rectangle) : Boolean;
 		function getRect() : Rectangle;
+		
+		function getBitmap() : Bitmap;
 	}
 	
 }

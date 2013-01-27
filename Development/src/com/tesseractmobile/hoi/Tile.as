@@ -14,7 +14,6 @@ package com.tesseractmobile.hoi
 		function removeEntity(entity : Entity) : void;
 		function addEventListener(listener : Function) : void;
 		function removeEventListener(listener : Function) : void;
-		function getBitmap() : Bitmap;
 	}
 	
 }
