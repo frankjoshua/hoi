@@ -26,8 +26,8 @@ package com.tesseractmobile.hoi
 		 */
 		function contains(rect : Rectangle) : Boolean;
 		function getRect() : Rectangle;
-		
 		function getBitmap() : Bitmap;
+		function setBitmap(bitmap : Bitmap) : void;
 	}
 	
 }

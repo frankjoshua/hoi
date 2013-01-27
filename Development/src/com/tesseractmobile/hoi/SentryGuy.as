@@ -25,11 +25,11 @@ package com.tesseractmobile.hoi
 			_sprite.x = rect.left;
 			_sprite.y = rect.top;
 			var g : Graphics = _sprite.graphics;
-			g.beginFill(0x00FF00, 1.0);
+			g.beginFill(0x00FF00, 0.1);
 			g.drawRect(0, 0, rect.width, rect.height);
 			g.endFill();
 			//Set Bitmap
-			setBitmap(BitmapManager.getInstance().getBadGuyImages(16));
+			setBitmap(BitmapManager.getInstance().getBadGuyImages(BitmapManager.SENTRY_1));
 		}
 		
 		override public function update(elapsedTime : int) : void {

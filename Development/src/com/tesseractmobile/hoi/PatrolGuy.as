@@ -24,7 +24,7 @@ package com.tesseractmobile.hoi
 			g.drawRect(0, 0, rect.width, rect.height);
 			g.endFill();
 			//Set Bitmap
-			setBitmap(BitmapManager.getInstance().getBadGuyImages(16));
+			setBitmap(BitmapManager.getInstance().getBadGuyImages(BitmapManager.PATROL_1));
 		}
 		
 		override public function update(elapsedTime : int) : void {

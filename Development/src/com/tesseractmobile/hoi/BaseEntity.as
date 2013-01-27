@@ -145,10 +145,11 @@ package com.tesseractmobile.hoi
 		public function setBitmap(bitmap : Bitmap) : void {
 			if (_bitmap != null) {
 				_bitmap.bitmapData.copyPixels(bitmap.bitmapData, bitmap.bitmapData.rect, new Point(0, 0));
+			} else {
+				_bitmap = new Bitmap(bitmap.bitmapData);
+				_bitmap.x = _rect.left;
+				_bitmap.y = _rect.top;
 			}
-			_bitmap = bitmap;
-			_bitmap.x = _rect.left;
-			_bitmap.y = _rect.top;
 		}
 		
 		public function setDirection(direction : int) : void {
