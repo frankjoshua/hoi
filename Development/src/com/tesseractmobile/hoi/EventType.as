@@ -6,7 +6,7 @@ package com.tesseractmobile.hoi
 	 */
 	public class EventType 
 	{
-		var _eventId : int;
+		private var _eventId : int;
 		
 		//Contants for event types
 		public static var PLAYER_LANDED : int = 1;

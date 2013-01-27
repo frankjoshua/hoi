@@ -8,6 +8,10 @@ package com.tesseractmobile.hoi
 	public interface Entity extends Drawable
 	{
 		function getType() : int;
+		function getTile() : Tile;
+		function setTile(tile : Tile) : void;
+		function setMoveFunction(func : Function) : void;
+		function setSpeed(speed : Number) : void;
 	}
 	
 }

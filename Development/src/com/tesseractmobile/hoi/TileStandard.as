@@ -10,12 +10,15 @@ package com.tesseractmobile.hoi
 	 */
 	public class TileStandard implements Tile
 	{
+		//kill function
+		static var _killPlayer : Function;
 		private var _color : int = 0;
 		private var _sprite : Sprite;
 		private var _borders : Borders;
 		private var _rect : Rectangle;
 		private var _id : int;
 		private var _eventListeners : Vector.<Function> = new Vector.<Function>();
+		private var _entity : Entity;
 		
 		public function TileStandard(id : int, rect : Rectangle, borders : Borders)
 		{
@@ -95,6 +98,20 @@ package com.tesseractmobile.hoi
 		 * @param	entity
 		 */
 		public function addEntity(entity : Entity) : void {
+			//Kill player if not null
+			if (_entity != null) {
+				//Check for player
+				if (_entity.getType() == BaseEntity.PLAYER_TYPE || entity.getType() == BaseEntity.PLAYER_TYPE) {
+					//Check for enemy
+					if (_entity.getType() == BaseEntity.ENEMY_TYPE || entity.getType() == BaseEntity.ENEMY_TYPE) {
+						//kill
+					_killPlayer(new EventType(0));
+					}
+				}
+				
+			}
+			//Set current Entity
+			_entity = entity;
 			//Create an event
 			var event : EventType =  new EventType(entity.getType());
 			//Send to all event listeners
@@ -102,6 +119,14 @@ package com.tesseractmobile.hoi
 				//Could check for return Boolean to see if event was handled
 				listener(event);
 			}
+		}
+		
+		/**
+		 * Remove current entity
+		 * @param	entiy
+		 */
+		public function removeEntity(entiy : Entity) : void {
+			_entity = null;
 		}
 	}
 
